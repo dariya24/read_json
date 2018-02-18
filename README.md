@@ -6,9 +6,8 @@ You can also access to other parts of json file by simply writing the name of th
 The list of possible information will be shown.
 _____
 Requirement:
-_____
 json molude
-_____
+____
 data_from_acc.py
 _____
 data_from_acc.py is  a function that uses twitter username as parameter and print name and location of it's followers.
@@ -16,14 +15,12 @@ You can also access to other parts of json file by simply writing the name of th
 The list of possible information will be shown.
 _____
 Requirement:
-_____
 json
 urllib.request, urllib.parse, urllib.error
 ssl
 _____
 
-Credits
+Licence
 _____
+No licence
 Dariya Reshetukha
-"# read_json" 
-"# read_json" 
