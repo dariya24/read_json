@@ -32,5 +32,3 @@ def data_from_json(file_path, verbouse=False, keyword=None):
     resp = str(input('Enter keyword seperated by space: ')).split()
     if resp:
          data_from_json(file_path,  verbouse=True, keyword=resp)
-
-data_from_json("information.json")
