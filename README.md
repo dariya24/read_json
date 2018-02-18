@@ -21,7 +21,7 @@ ssl
 _____
 app.py
 _____
-app.py is a web app written on Flask. It basically does the same as data_from_accc, but it only shows location on the map, using folium module. Make sure you have those modules installed before using, as well as input.html and not_found.html in templates folder and logo.png in static folder.
+app.py is a web app written on Flask. It basically does the same as data_from_accc, but it only shows location on the map, using folium module. Make sure you have those modules installed(Flask, folium, json, urllib.request, urllib.parse, urllib.error, ssl) before starting, as well as input.html and not_found.html in templates folder and logo.png in static folder.
 _____
 
 Licence
