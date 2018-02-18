@@ -3,24 +3,8 @@ app = Flask(__name__)
 
 def location(element):
     """
-    str -> lst
+    str -> tuple
     Return the location of element
-    """
-    """
-    print(element)
-    import requests
-    url = 'https://maps.googleapis.com/maps/api/geocode/json'
-    key = 'AIzaSyD98dKjSx2d7zcmUWJDKaG-cTofO-6rztU'
-    params = {"sensor": "false", 'address': element, 'key': key}
-    r = requests.get(url, params=params).json()
-    print(r)
-    if len(r['results']) > 0:
-        location = r['results'][0]['geometry']['location']
-        lat_long = (location['lat'], location['lng'])
-        print("LAT_LONG:", lat_long)
-        return lat_lng
-    else:
-        print("Error")
     """
     from geopy.geocoders import Nominatim
     geolocator = Nominatim(timeout=10)
@@ -61,6 +45,9 @@ def index():
 
 @app.route('/input', methods=["POST", "GET"])
 def input():
+    """
+    get the username
+    """
     if request.method == "POST":
         username = request.form['username']
         if username:
@@ -69,6 +56,9 @@ def input():
 
 
 def get_map(account):
+    """
+    str->None
+    """
     import urllib.request, urllib.parse, urllib.error
     import twurl
     import json
@@ -84,21 +74,21 @@ def get_map(account):
     ctx.check_hostname = False
     ctx.verify_mode = ssl.CERT_NONE
     acct = account
-    #try:
-    url = twurl.augment(TWITTER_URL,
-                        {'screen_name': acct, 'count': '200'})
-    connection = urllib.request.urlopen(url, context=ctx)
-    data = connection.read().decode()
-    js = json.loads(data)
-    lst = []
-    for u in js['users']:
-        loc = location(u['location'])
-        if loc:
-            lst.append(tuple([u['screen_name'], loc]))
-    create_map(lst)
-    return redirect(url_for('show_map'))
-    #except:
-    #    return render_template("not_found.html")
+    try:
+        url = twurl.augment(TWITTER_URL,
+                            {'screen_name': acct, 'count': '200'})
+        connection = urllib.request.urlopen(url, context=ctx)
+        data = connection.read().decode()
+        js = json.loads(data)
+        lst = []
+        for u in js['users']:
+            loc = location(u['location'])
+            if loc:
+                lst.append(tuple([u['screen_name'], loc]))
+        create_map(lst)
+        return redirect(url_for('show_map'))
+    except urllib.error.HTTPError:
+        return render_template("not_found.html")
 
 
 @app.route('/map')
