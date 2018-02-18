@@ -45,6 +45,3 @@ def data_from_acc(acct, verbouse=False, keyword=None):
     if resp:
         data_from_acc(acct,  verbouse=True, keyword=resp)
 
-
-
-data_from_acc("dariya_rsh")
