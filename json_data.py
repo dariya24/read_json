@@ -3,7 +3,10 @@ def data_from_json(file_path, verbouse=False, keyword=None):
     str, bool, None -> str
     """
     import json
-    f = open(file_path, "r")
+    try: 
+        f = open(file_path, "r")
+    except FileNotFoundError:
+        return "File not  found"
     data = f.read()
     f.close()
     js = json.loads(data)
