@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 app = Flask(__name__)
 
+
 def location(element):
     """
     str -> tuple
@@ -9,10 +10,11 @@ def location(element):
     from geopy.geocoders import Nominatim
     geolocator = Nominatim(timeout=10)
     location = geolocator.geocode(element)
-    if location != None:
+    if location is not None:
         return (location.latitude, location.longitude)
     else:
         return None
+
 
 def create_map(lst):
     """
@@ -24,12 +26,12 @@ def create_map(lst):
     layer = folium.FeatureGroup(name="Your friends around the world")
     for element in lst:
         print("Getting info about location...")
-        if element[0] and element[1] != None:
+        if element[0] and element[1] is not None:
             try:
-                icon_img = folium.features.CustomIcon("static/logo.png", icon_size=(40, 40))
-                layer.add_child(folium.Marker(location=element[1],
-                                                        popup=element[0],
-                                                        icon=icon_img))
+                icon_img = folium.features.CustomIcon("static/logo.png",
+                                                      icon_size=(40, 40))
+                layer.add_child(folium.Marker(
+                    location=element[1], popup=element[0], icon=icon_img))
             except AttributeError:
                 pass
     map.add_child(layer)
