@@ -3,7 +3,7 @@ def data_from_json(file_path, verbouse=False, keyword=None):
     str, bool, None -> str
     """
     import json
-    try: 
+    try:
         f = open(file_path, "r")
     except FileNotFoundError:
         return "File not  found"
@@ -23,7 +23,7 @@ def data_from_json(file_path, verbouse=False, keyword=None):
             return "Wrong keyword"
     else:
         for person in js['users']:
-            print(person['name'] + ","+ person['location'])
+            print(person['name'] + "," + person['location'])
 
     print("To get more data: enter one keyword from the list below, or Enter to finish.")
     temp = 1
@@ -31,7 +31,7 @@ def data_from_json(file_path, verbouse=False, keyword=None):
         if temp == 1:
             for key in person:
                 print(key)
-        temp+=1
+        temp += 1
     resp = str(input('Enter keyword seperated by space: ')).split()
     if resp:
-         data_from_json(file_path,  verbouse=True, keyword=resp)
+        data_from_json(file_path,  verbouse=True, keyword=resp)
